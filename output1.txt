@@ -1,0 +1,1 @@
+1: public 2: class 3: private 4: private 5: for 6: private 7: int 8: public 9: int 10: for 11: this 12: this 13: this 14: for 15: for 16: public 17: int 18: return 19: public 20: return 21: public 22: for 23: return 24: for 25: public 26: void 27: this 28: public 29: void 30: int 31: this 32: public 33: void 34: for 35: for 36: this 37: for 38: for Количество ключевых слов: 38
