@@ -45,8 +45,8 @@ public class StreamsHandlerTest {
     }
 
     private void checkFiles() {
-        boolean[] right_keywords_mask = new boolean[RIGHT_KEYWORDS.length];
         try(BufferedReader output = new BufferedReader(new FileReader("tmp/output.txt"))) {
+            boolean[] rightKeywordsMask = new boolean[RIGHT_KEYWORDS.length];
             String line = null;
             while ((line = output.readLine()) != null) {
                 String[] split = line.split(": ");
@@ -58,12 +58,17 @@ public class StreamsHandlerTest {
                     String keyword = split[1];
                     int idx = Arrays.binarySearch(RIGHT_KEYWORDS, keyword);
                     if (idx >= 0) {
-                        right_keywords_mask[idx] = true;
+                        rightKeywordsMask[idx] = true;
                     } else {
                         Assert.fail("Найдено неверное ключевое слово: " + keyword);
                     }
                 }
             }
+            boolean allKeywordsExists = true;
+            for (int i = 0; i < RIGHT_KEYWORDS.length; i++) {
+                allKeywordsExists &= rightKeywordsMask[i];
+            }
+            Assert.assertTrue("все ключевые слова должны присуствовать", allKeywordsExists);
         } catch (IOException e) {
             Assert.fail("IOException");
         }
