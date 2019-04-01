@@ -17,11 +17,10 @@ public class BinaryStreamsHandler {
         try {
             BufferedInputStream inFile = new BufferedInputStream(new FileInputStream(nameOfInputFile));
             BufferedOutputStream outFile = new BufferedOutputStream(new FileOutputStream(nameOfOutputFile));
-            StringBuffer stringFromInput = new StringBuffer();
-            int reader;
-            while ((reader = inFile.read()) != -1) {
-                stringFromInput.append((char) reader);
-            }
+            int size = inFile.available();
+            byte[] buffer = new byte[size];
+            inFile.read(buffer);
+            String stringFromInput = new String(buffer);
             inFile.close();
 
             Matcher match = keywordPattern().matcher(stringFromInput);
@@ -30,8 +29,8 @@ public class BinaryStreamsHandler {
 
             while (match.find()) {
                 count++;
-                stringFromOutput = stringFromInput.substring(match.start(), match.end()) + " ";
-                outFile.write(String.format("%d: %s", count, stringFromOutput).getBytes());
+                stringFromOutput = stringFromInput.substring(match.start(), match.end());
+                outFile.write(String.format("%d: %s\n", count, stringFromOutput).getBytes());
                 //outFile.write(System.getProperty("line.separator").getBytes());
 
             }

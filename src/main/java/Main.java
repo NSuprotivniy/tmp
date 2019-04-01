@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        BinaryStreamsHandler bHandler = new BinaryStreamsHandler("input.txt", "output1.txt");
+        BinaryStreamsHandler bHandler = new BinaryStreamsHandler("input.txt", "correct_output.txt");
         bHandler.keywordWriter();
         TextStreamHandler tHandler = new TextStreamHandler("input.txt", "output2.txt");
         tHandler.keywordWriter();

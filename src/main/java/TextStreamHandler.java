@@ -30,8 +30,8 @@ public class TextStreamHandler {
 
             while (match.find()) {
                 count++;
-                stringFromOutput = stringFromInput.substring(match.start(), match.end()) + " ";
-                outFile.write(String.format("%d: %s", count, stringFromOutput));
+                stringFromOutput = stringFromInput.substring(match.start(), match.end());
+                outFile.write(String.format("%d: %s\n", count, stringFromOutput));
                 //outFile.write(System.getProperty("line.separator"));
 
             }
